@@ -222,10 +222,10 @@ We want to see which types of crime are more popular in different areas of Chica
 
 ```{r}
 subsetcrimes <- crimes %>%
-  filter(`Primary Type` %in% c("ARSON", "LIQUOR LAW VIOLATION", "GAMBLING", "KIDNAPPING", "CONCEALED CARRY LICENSE VIOLATION", "CRIMINAL TRESPASS", "NARCOTICS", "BURGLARY", "INTERFERENCE WITH PUBLIC OFFICER"))
+  filter(`Primary Type` %in% c("ARSON", "LIQUOR LAW VIOLATION", "GAMBLING", "KIDNAPPING", "CONCEALED CARRY LICENSE VIOLATION", "CRIMINAL TRESPASS", "NARCOTICS", "BURGLARY", "INTERFERENCE WITH PUBLIC OFFICER", "CRIMINAL SEXUAL ASSAULT"))
 ```
 
-For visualization purposes, since the subset is 1328825 observations (which is a lot for visualization), we will be using an animation to section it off by year. When we performed kmeans clustering, we used the previous year's final centroid as the next year's initial centroid so the clusters/ plots can be more comparable over years. These plots are still very hard to pull analysis from because there are so many observations so we also created a table of these clusters and the proportions of types of crimes within each cluster each year. We will still show the plot so the reader can visualize these clusters.
+For visualization purposes, since the subset is 1328825 observations (which is a lot for visualization), we will be using an animation to section it off by year. When we performed kmeans clustering, we used the initial 2002 centroids from this larger dataset with many crimes as the initial centroids for other years and plots. This allows the clusters to be more comparable over years and plots throughout this project. This plot with many crimes is still very hard to pull analysis from because there are so many observations so we also created an interactive table and graphic of these clusters and the proportions of types of crimes within each cluster each year. We will still show the plot below so the reader can visualize these clusters. We preferred frequency analysis of type of crime types in clusters over counts of crime types because these clusters are arbitrary and not based on population sizes or area.
 
 ```{r}
 #| label: Cluster analysis Many Crimes
@@ -303,7 +303,7 @@ animate(animatedplot,  height = 500, width = 800,
 anim_save("clusteranalysis_ManyCrimes.gif")
 ```
 
-Interestingly, it looks like the number of crimes overall is decreasing over time or these crimes are being less reported. We use the same initial clusters that are found from the 2002 data across all year so we can more accurately compare these clusters.
+Interestingly, it looks like the number of crimes overall is decreasing over time or these crimes are being less reported. 
 
 The following table shows the frequency of each crime in each cluster for each year. Each row adds up to 1. This will allow us to see which types of crimes are more popular in which areas and how these trends change over time.
 
@@ -328,17 +328,24 @@ df_proportions %>%
 
 ```
 
-Some observations from our table:
+
+The following plot visualizes these proportions of crime types in each cluster
+```{r}
+include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "800px")
+```
+
+Some observations from our table and visual:
 
 -   The proportion of crimes with the type interference with a public officer increases over time in all clusters
 
--   Cluster 4 looks to have a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
+-   The proportion of crimes with the type narcotics decreases over time in all clusters
+
+-   Cluster 4 has a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
 
 -   In most years, Cluster 1 looks to have a higher frequency of crimes with the type, Burglary than other clusters
 
 -   The frequency of crimes with the type gambling has decreased over time overall but used to have the highest frequencies in cluster 2 and 3.
 
-This analysis is from just looking at this chart but (TO DO) we want to make this into graph form so it is more visually appealing and interpretable and we want to get some statistics (means, standard deviations) from this chart.
 
 #### Geospatial Cluster Analysis - Homicides Pattern Discernment
 
@@ -932,14 +939,6 @@ As mentioned in the introduction, it is crucial to assess and acknowledge the li
 6.  Implications for Policy and Practice: Acknowledging the limitations and biases in the dataset, it is imperative to approach any policy or practice recommendations with caution. Recommendations should be guided by an understanding of the potential biases and limitations, ensuring that they do not inadvertently harm specific groups or perpetuate existing disparities.
 
 In conclusion, our exploration of this data requires a nuanced awareness of its limitations and ethical considerations. By addressing these issues, we aim to contribute responsibly to the broader discourse on crime while recognizing the complexity of the social and ethical landscapes in which our analysis is situated.
-
-## To Do
-
-In our cluster analysis, we want to have the clusters stay in approximately the same area over time so we want to change our code to use the same initial centroids over time. We may also want to use the intitial centroids from the cluster analysis of all crimes in our following plots of individual crimes so we can compare them more accurately. We also want to get some statistics (means, standard deviations, max, min, etc.) of arrest rates. We also want to compare our location analysis to a map of Chicago and demographic maps of Chicago including earnings data.
-
-We want to use our table of frequencies of crimes in each cluster to make visuals and extract some statistics (means, standard deviations, max, mins etc) from this table and we want to add rows for each year that reflect the overall frequencies of crimes over all observations (not clustered)
-
-We want to improve our decision tree that predicts type of crime by making a boosted tree model and we want to tune cost and tree depth. We will also find further metrics for our model. We may also want to use more years but we have a lot of data between 2022-2023 so this many be sufficient and may actually be preferred because crime types differ over years. Lastly, we made a predictive boosted model that classifies if an arrest was made or not based on a set of predictors. It may also be useful to make an interpretable logistic model that will allow us to see which predictors impact arrests being made.
 
 ## Bibliography
 
