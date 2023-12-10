@@ -268,9 +268,10 @@ map(years, get_clusters_helper)
 animatedplot <- ggplot(new_crimes_w_clusters, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster))) +
   geom_point(alpha=0.15) +
   transition_time(Year) +
+    scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum"))+
   labs(color = "Cluster", 
        subtitle = "Year: {str_sub(frame_time, 1, 4)}", 
-       title = "Many Crimes on X and Y Coordinates by Year with K Means Clusters") 
+       title = "Many Crimes on X and Y Coordinates by Year with K Means Clusters", x = "X Coordinate", y = "Y Coordinate") 
 
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
@@ -448,26 +449,22 @@ merged_df <- merged_df %>%
 
 ```{r}
 graph1 <- merged_df %>% ggplot()+
-  geom_point(alpha=0.15, aes(x = x_coordinate, y = y_coordinate, group = interaction(year, x_coordinate), color=as.factor(cluster)))+
-  scale_color_manual(name = "Cluster", values = c("blue", "orange", "green", "pink","red")) +
-    labs(color="Cluster")+
-  guides(color = "legend")+
   xlim(1110000, 1225000)+
-  new_scale_color()
+  geom_point(alpha=0.15, aes(x = x_coordinate, y = y_coordinate, group = interaction(year, x_coordinate), color=as.factor(cluster)))+
+  scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
+  new_scale_color()+
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.45, "Above 0.45", "Below or equal to 0.45"), group = interaction(year, mean_x_coordinate))) +
+    scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
 ```
 
 
 ```{r}
-graph1.animation = graph1 +
+graph1.animation <- graph1 +
   theme_minimal()+
-  geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.45, "Above 0.45", "Below or equal to 0.45"), group = interaction(year, mean_x_coordinate)), show.legend = TRUE) +
-    scale_color_manual(name = "Arrest Rate", values = c("hotpink", "purple"))+
   transition_time(year) +
-    guides(color = "legend")+
-
-  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}", color="Arrest Rate", title="Homicides in Chicago by Year with KMeans Clusters")
+  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}", color ="Arrest Rate", title="Homicides in Chicago by Year with KMeans Clusters",  x = "X Coordinate", y = "Y Coordinate")
 
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 #dc37 on Stack Overflow https://stackoverflow.com/questions/11838278/plot-with-conditional-colors-based-on-values-in-r 
@@ -588,21 +585,24 @@ merged_df <- merged_df %>%
 
 
 ```{r}
-graph1 <- ggplot(merged_df, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
-  geom_point(alpha=0.15)+
-  labs(color="Cluster", title="Criminal Sexual Assaults in Chicago by Year with KMeans Clusters")+
-  xlim(1110000, 1225000)
+graph1 <- merged_df %>% ggplot()+
+  xlim(1110000, 1225000)+
+  geom_point(alpha=0.15, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
+  scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
+  new_scale_color()+
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.2, "Above 0.2", "Below or equal to 0.2"), group = interaction(Year, mean_x_coordinate))) +
+    scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
 ```
 
 
+
 ```{r}
-graph1.animation = graph1 +
+graph1.animation <- graph1 +
   theme_minimal()+
-  geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.2, "Above 0.2", "Below or equal to 0.2")), show.legend = FALSE) +
   transition_time(Year) +
-  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}")
+  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}", color ="Arrest Rate", title="Criminal Sexual Assaults in Chicago by Year with KMeans Clusters",  x = "X Coordinate", y = "Y Coordinate")
 
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 #dc37 on Stack Overflow https://stackoverflow.com/questions/11838278/plot-with-conditional-colors-based-on-values-in-r 
@@ -721,38 +721,41 @@ merged_df <- merged_df %>%
 
 
 ```{r}
-graph1 <- ggplot(merged_df, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
-  geom_point(alpha=0.15)+
-  labs(color="Cluster", title="Interference with Public Officer in Chicago by Year with KMeans Clusters")+
-  xlim(1110000, 1225000)
+graph1 <- merged_df %>% ggplot()+
+  xlim(1110000, 1225000)+
+  geom_point(alpha=0.15, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
+  scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
+  new_scale_color()+
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.9, "Above 0.9", "Below or equal to 0.9"), group = interaction(Year, mean_x_coordinate))) +
+    scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
 ```
 
 
+
 ```{r}
-graph1.animation = graph1 +
+graph1.animation <- graph1 +
   theme_minimal()+
-  geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.9, "Above 0.9", "Below or equal to 0.9")), show.legend = FALSE) +
   transition_time(Year) +
-  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}")
+  labs(subtitle = "Year: {str_sub(frame_time, 1, 4)}", color ="Arrest Rate", title="Interference with Public Officer in Chicago by Year with KMeans Clusters",  x = "X Coordinate", y = "Y Coordinate")
 
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 #dc37 on Stack Overflow https://stackoverflow.com/questions/11838278/plot-with-conditional-colors-based-on-values-in-r 
 ```
 
 
+
 ```{r}
 animate(graph1.animation, height = 500, width = 800, fps = 30, duration = 30,
         end_pause = 60, res = 100)
-anim_save("interferencewPO_cluster_analysis.gif")
+anim_save("sexassault_cluster_analysis.gif")
 
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
 
 Arrest rates colored in purple are above 0.9 for that cluster. Arrest rates below or equal to 0.9 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. We would like to look at earning and demographic distributions in Chicago to investigate this. 
-
 
 #### k-Prototypes Clustering Analysis for type of crime
 
