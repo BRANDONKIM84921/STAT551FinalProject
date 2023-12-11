@@ -159,7 +159,7 @@ For simplicity's sake (and since shinyapps.io doesn't allow data that exceeds 10
 #### Leaflet Shiny App:
 
 ```{r}
-include_app("https://b7iuz3-brandon-kim.shinyapps.io/ChicagoCrimeSubset/", height = "900px")
+include_app("https://b7iuz3-brandon-kim.shinyapps.io/ChicagoCrimeSubset/", height = "925px")
 ```
 
 Looking at multiple clusters across different inputs, we can see that the clusters do vary in size, shape and range.
@@ -331,7 +331,7 @@ df_proportions %>%
 
 The following plot visualizes these proportions of crime types in each cluster
 ```{r}
-include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "800px")
+include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "750px")
 ```
 
 Some observations from our table and visual:
@@ -727,7 +727,7 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.9 for that cluster. Arrest rates below or equal to 0.9 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. We would like to look at earning and demographic distributions in Chicago to investigate this.
+Arrest rates colored in purple are above 0.9 for that cluster. Arrest rates below or equal to 0.9 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
 
 #### Multi-Factor Cluster Analysis - General Crime Pattern Discernment
 
@@ -772,7 +772,7 @@ proto_data %>%
   kable_styling("striped")
 ```
 
-We would like to see if we can find clusters that are more pure in terms of type of crime. Our current run shows a big plurality within each cluster. The above table shows the centroids of these clusters.
+We would like to see if we can find clusters that are more pure in terms of type of crime. Our current run shows a big plurality within each cluster. The above table shows the centroids of these clusters and the frequencies of crime in each cluster.
 
 ## Tasks 2 and 3: Predictive Modeling for Crime Type and Arrests
 
