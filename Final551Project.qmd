@@ -47,7 +47,7 @@ Chicago is considered a great place to visit by many, with many tourist attracti
 
 **Our three tasks will be:**
 
-1.  Using multiple non-supervised clustering methods of varying precision to determine if specific locations, based on latitude and longitude, and times are associated with the frequency of certain crimes. (Particularly about homicides, sexual assault and Officer Interference).
+1.  Using multiple non-supervised clustering methods of varying precision to determine if specific locations, based on latitude and longitude, and times are associated with the frequency of certain crimes and the arrest rates of these crimes. (Particularly about homicides, sexual assault and Officer Interference).
 2.  Developing a gradient boosted decision tree model to make predictions on which type of crime may be reported given a location, time and other factors.
 3.  Developing a gradient boosted decision tree model to make predictions on whether an arrest was made given the same factors.
 
@@ -69,7 +69,7 @@ In conclusion, this project seeks to find patterns of crime throughout Chicago a
 
 ## Previous Work
 
-(Schreck, McGloin, and Kirk 2009) studies 300 neighborhoods in Chicago over 2 years (1995-1996) and finds that these neighborhoods "clearly distinguish themselves based upon the types of crimes that occur there." Some neighborhoods are more likely to have higher rates of violent or non violent crimes and these trends were often the same over years. We want to look at more recent years and larger timeline and see if these findings remain true. We would also like to focus on more specific types of crime instead of the more broad categories of violent and nonviolent.
+(Schreck, McGloin, and Kirk 2009) studied 300 neighborhoods in Chicago over 2 years (1995-1996) and found that these neighborhoods "clearly distinguish themselves based upon the types of crimes that occur there." Some neighborhoods are more likely to have higher rates of violent or non violent crimes and these trends were often the same over years. We want to look at more recent years and larger timeline and see if these findings remain true. We would also like to focus on more specific types of crime instead of the more broad categories of violent and nonviolent.
 
 Reasoning for the different distributions of different types of crime is proposed in "Street Gang Crime in Chicago" (Block and Block 1993) which finds that street gangs in Chicago have different areas that they are concentrated in and different crimes that they engage in. "Most of the criminal activity in smaller street gangs centered on representation turf defense. The most lethal street gang hot spot areas are along disputed boundaries between small street gangs...Street gangs specializing in instrumental violence were strongest in disrupted and declining neighborhoods. Street gangs specializing in expressive violence were strongest and most violent in relatively prosperous neighborhoods with expanding populations."
 
@@ -146,7 +146,7 @@ homicides <- homicides %>%
          year = year(date))
 ```
 
-We would also like to clean the homicides data set for some surface level analysis as well.
+We would also like to clean the homicides data set for some surface level analysis as well and remove seemingly incorrect entries that have x and y coordinates = 0. 
 
 ## Exploratory Analysis
 
@@ -222,7 +222,7 @@ We want to see which types of crime are more popular in different areas of Chica
 
 ```{r}
 subsetcrimes <- crimes %>%
-  filter(`Primary Type` %in% c("ARSON", "LIQUOR LAW VIOLATION", "GAMBLING", "KIDNAPPING", "CONCEALED CARRY LICENSE VIOLATION", "CRIMINAL TRESPASS", "NARCOTICS", "BURGLARY", "INTERFERENCE WITH PUBLIC OFFICER", "CRIMINAL SEXUAL ASSAULT"))
+  filter(`Primary Type` %in% c("ARSON", "LIQUOR LAW VIOLATION", "GAMBLING", "KIDNAPPING", "CONCEALED CARRY LICENSE VIOLATION", "CRIMINAL TRESPASS", "NARCOTICS", "BURGLARY", "INTERFERENCE WITH PUBLIC OFFICER", "CRIMINAL SEXUAL ASSAULT", "HOMICIDE"))
 ```
 
 For visualization purposes, since the subset is 1328825 observations (which is a lot for visualization), we will be using an animation to section it off by year. When we performed kmeans clustering, we used the initial 2002 centroids from this larger dataset with many crimes as the initial centroids for other years and plots. This allows the clusters to be more comparable over years and plots throughout this project. This plot with many crimes is still very hard to pull analysis from because there are so many observations so we also created an interactive table and graphic of these clusters and the proportions of types of crimes within each cluster each year. We will still show the plot below so the reader can visualize these clusters. We preferred frequency analysis of type of crime types in clusters over counts of crime types because these clusters are arbitrary and not based on population sizes or area.
@@ -339,6 +339,10 @@ Some observations from our table and visual:
 -   The proportion of crimes with the type interference with a public officer increases over time in all clusters
 
 -   The proportion of crimes with the type narcotics decreases over time in all clusters
+
+-   The proportion of crimes with the type criminal sexual assaults decreases over time in all clusters
+
+-   The proportion of crimes with the type homicide increases over time in all clusters but increases the least in cluster 2
 
 -   Cluster 4 has a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
 
