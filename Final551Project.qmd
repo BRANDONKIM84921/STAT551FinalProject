@@ -331,7 +331,7 @@ df_proportions %>%
 
 The following plot visualizes these proportions of crime types in each cluster
 ```{r}
-include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "750px")
+include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "725px")
 ```
 
 Some observations from our table and visual:
@@ -586,7 +586,7 @@ merged_df <- merged_df %>%
 percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
 
 ```
-The 25th percentile of arrest rates for homicides in clusters over years is 0.1207512. We colored the arrest rates on the plot based on if they are over or under this rate. 
+The 25th percentile of arrest rates for Criminal Sexual Assaults in clusters over years is 0.1207512. We colored the arrest rates on the plot based on if they are over or under this rate. 
 
 
 ```{r}
@@ -719,7 +719,7 @@ merged_df <- merged_df %>%
 ```{r}
 percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
 ```
-The 25th percentile of arrest rates for homicides in clusters over years is 0.8682178 We colored the arrest rates on the plot based on if they are over or under this rate. 
+The 25th percentile of arrest rates for Public Officer Interference in clusters over years is 0.8682178 We colored the arrest rates on the plot based on if they are over or under this rate. 
 
 
 ```{r}
