@@ -353,7 +353,7 @@ Some observations from our table and visual:
 
 #### Geospatial Cluster Analysis - Homicides Pattern Discernment
 
-We wanted to look more in depth at homicide locations in Chicago. We made made an animated plot of the locations of homicides in Chicago based on x/y coordinates. We clustered this data using K Means with 5 clusters. We also looked at the arrest rates in each cluster. Although a homicide does not necessarily mean that someone is liable for a crime and can be arrested, we used arrests as a metric representing the effectiveness of police in the area. The arrest rate does not need to be close to 1 for us to deem the police as effective because a homicide does not necessarily mean that someone is liable for a crime. However, if the arrest rate is lower in one cluster compared to other clusters, this may be evidence that police need to focus more on these areas.
+We wanted to look more in depth at homicide locations in Chicago, especially because the frequency of homicides increases over time in each cluster. We made made an animated plot of the locations of homicides in Chicago based on x/y coordinates. We clustered this data using K Means with 5 clusters. We also looked at the arrest rates in each cluster. Although a homicide does not necessarily mean that someone is liable for a crime and can be arrested, we used arrests as a metric representing the effectiveness of police in the area. The arrest rate does not need to be close to 1 for us to deem the police as effective because a homicide does not necessarily mean that someone is liable for a crime. However, if the arrest rate is lower in one cluster compared to other clusters, this may be evidence that police need to focus more on these areas.
 
 ```{r results = FALSE}
 #| label: Cluster analysis Homicides
@@ -436,6 +436,12 @@ apply(combos, 1,get_arrest_rate)
 
 ```
 
+
+```{r}
+percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
+```
+The 25th percentile of arrest rates for homicides in clusters over years is 0.4033951. We colored the arrest rates on the plot based on if they are over or under this rate. 
+
 ```{r}
 ## add column for mean x/ y coordinate as the coordinate to display the arrest rate 
 
@@ -456,7 +462,7 @@ graph1 <- merged_df %>% ggplot()+
   geom_point(alpha=0.15, aes(x = x_coordinate, y = y_coordinate, group = interaction(year, x_coordinate), color=as.factor(cluster)))+
   scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
   new_scale_color()+
-    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.45, "Above 0.45", "Below or equal to 0.45"), group = interaction(year, mean_x_coordinate))) +
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.4, "Above 0.4", "Below or equal to 0.4"), group = interaction(year, mean_x_coordinate))) +
     scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
@@ -480,7 +486,7 @@ anim_save("homicide_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.45 for that cluster. Arrest rates below or equal to 0.45 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. This may be because crime is increasing or may be due to changes in police organization. We would like to look at numbers of homicides and see if they increase over time. It is also interesting that cluster 2 has a higher arrest rates than the other clusters most of the time and especially in later years. It will be interesting to do more research about this area. We can look at demographic information including earnings data in this area. We would like to investigate other crimes individually to see if the spacial distribution of crimes differs by crime type.
+Arrest rates colored in purple are above 0.4 for that cluster. Arrest rates below or equal to 0.4 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. This may be because crime is increasing or may be due to changes in police organization. We would like to look at numbers of homicides and see if they increase over time. It is also interesting that cluster 2 has a higher arrest rates than the other clusters most of the time and especially in later years. It will be interesting to do more research about this area. We can look at demographic information including earnings data in this area. We would like to investigate other crimes individually to see if the spacial distribution of crimes differs by crime type.
 
 #### Geospatial Cluster Analysis - Criminal Sexual Assault Pattern Discernment
 
@@ -575,13 +581,21 @@ merged_df <- merged_df %>%
 
 ```
 
+
+```{r}
+percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
+
+```
+The 25th percentile of arrest rates for homicides in clusters over years is 0.1207512. We colored the arrest rates on the plot based on if they are over or under this rate. 
+
+
 ```{r}
 graph1 <- merged_df %>% ggplot()+
   xlim(1110000, 1225000)+
   geom_point(alpha=0.15, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
   scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
   new_scale_color()+
-    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.2, "Above 0.2", "Below or equal to 0.2"), group = interaction(Year, mean_x_coordinate))) +
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.12, "Above 0.12", "Below or equal to 0.12"), group = interaction(Year, mean_x_coordinate))) +
     scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
@@ -605,7 +619,7 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.2 for that cluster. Arrest rates below or equal to 0.2 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. In earlier years, the northern most cluster has the highest arrest rates but over time, all clusters have a similar low arrest rate from 0.1-0.05 in 2022 and 2023.
+Arrest rates colored in purple are above 0.12 for that cluster. Arrest rates below or equal to 0.12 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. In earlier years, the northern most cluster has the highest arrest rates but over time, all clusters have a similar low arrest rate from 0.1-0.05 in 2022 and 2023.
 
 #### Geospatial Cluster Analysis - Public Officer Interference Pattern Discernment
 
@@ -701,13 +715,20 @@ merged_df <- merged_df %>%
 
 ```
 
+
+```{r}
+percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
+```
+The 25th percentile of arrest rates for homicides in clusters over years is 0.8682178 We colored the arrest rates on the plot based on if they are over or under this rate. 
+
+
 ```{r}
 graph1 <- merged_df %>% ggplot()+
   xlim(1110000, 1225000)+
   geom_point(alpha=0.15, aes(x = `X Coordinate`, y = `Y Coordinate`, group = interaction(Year, `X Coordinate`), color=as.factor(cluster)))+
   scale_color_manual(name = "Cluster", values = c("lightblue", "orange", "green", "pink","plum")) +
   new_scale_color()+
-    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.9, "Above 0.9", "Below or equal to 0.9"), group = interaction(Year, mean_x_coordinate))) +
+    geom_text(aes(x=mean_x_coordinate,y=mean_y_coordinate, label = paste("Arrest Rate: ", round(arrest_rate, 2) ), color = ifelse(arrest_rate > 0.86, "Above 0.86", "Below or equal to 0.86"), group = interaction(Year, mean_x_coordinate))) +
     scale_color_manual(name = "Arrest Rate", values = c("purple", "hotpink"))
 
 #Jon Spring on Stack Overflow https://stackoverflow.com/questions/56411604/how-to-make-dots-in-gganimate-appear-and-not-transition
@@ -731,7 +752,8 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.9 for that cluster. Arrest rates below or equal to 0.9 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
+Arrest rates colored in purple are above 0.86 for that cluster. Arrest rates below or equal to 0.86 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
+
 
 #### Multi-Factor Cluster Analysis - General Crime Pattern Discernment
 
