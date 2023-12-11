@@ -63,7 +63,7 @@ Overall, the findings of this project are intended to benefit multiple groups of
 
 The datasets used in this analysis are from the Chicago Data Portal, specifically the Crimes dataset (Chicago Data Portal) and the Homicide Map dataset (Chicago Data Portal) . These are compiled by the Chicago Police Department using their system called CLEAR - Citizen Law Enforcement Analysis and Reporting System, which is available to the public.
 
-While this data includes all reported crimes published by the Chicago Police Department, there may be inherent bias involved. It is possible that racial profiling used by police departments may over-inflate the crimes reported for people of color. Additionally, those who live in lower income or gang related areas may also be more likely to be arrested for potentially committing a crime as compared to people from more affluent neighborhoods. It is also incredibly important to note that this data reflects the reported crimes in Chicago, not the true number of crimes. Any crimes that tend to be reported less often are unlikely to be adequately represented with this analysis. For example, domestic assault or sexual assault cases may be represented incorrectly, as these types of crimes tend to be reported less often. Thus, it is important that we include these biases in our conclusions and limit our generalizations, to ensure that the mentioned groups, as well as others, are not negatively affected by our conclusions. We recognize that this data regards sensitive information, and we will do everything possible to ensure that our results are not used in a way which may harm certain groups of people.
+While this data includes all reported crimes published by the Chicago Police Department, there may be inherent bias involved. It is possible that racial profiling used by police departments may over-inflate the crimes reported for people of color. Additionally, those who live in lower income or gang related areas may also be more likely to be arrested for potentially committing a crime as compared to people from more affluent neighborhoods. It is also incredibly important to note that this data reflects the reported crimes in Chicago, not the true number of crimes. Any crimes that tend to be reported less often are unlikely to be adequately represented with this analysis. For example, domestic assault or sexual assault cases may be represented incorrectly, as these types of crimes tend to be reported less often. Thus, it is important that we include these biases in our conclusions and limit our generalizations, to ensure that the mentioned groups, as well as others, are not negatively affected by our conclusions. We also investigate how crimes change over time but we realize that this may be because there is greater or less focus on policing these crimes over time and not necessarily that people are committing these crimes at different rates. We recognize that this data regards sensitive information, and we will do everything possible to ensure that our results are not used in a way which may harm certain groups of people.
 
 In conclusion, this project seeks to find patterns of crime throughout Chicago and contribute to the greater good by giving the people of Chicago access to easily understandable information about the safety of their surroundings.
 
@@ -340,7 +340,7 @@ Some observations from our table and visual:
 
 -   The proportion of crimes with the type narcotics decreases over time in all clusters
 
--   The proportion of crimes with the type criminal sexual assaults decreases over time in all clusters
+-   The proportion of crimes with the type criminal sexual assaults increases over time in all clusters
 
 -   The proportion of crimes with the type homicide increases over time in all clusters but increases the least in cluster 2
 
@@ -490,6 +490,8 @@ Arrest rates colored in purple are above 0.4 for that cluster. Arrest rates belo
 
 #### Geospatial Cluster Analysis - Criminal Sexual Assault Pattern Discernment
 
+We also want to investigate Criminal Sexual Assaults especially because rates of Criminal Sexual Assaults increase over time in each cluster. 
+
 ```{r}
 sexassault_subsetcrimes <- crimes %>%
   filter(`Primary Type` %in% c("CRIMINAL SEXUAL ASSAULT"))
@@ -623,6 +625,7 @@ Arrest rates colored in purple are above 0.12 for that cluster. Arrest rates bel
 
 #### Geospatial Cluster Analysis - Public Officer Interference Pattern Discernment
 
+We also want to investigate Public Officer Interference especially because rates of Public Officer Interference increase over time in each cluster. 
 ```{r}
 interferencewPO_subsetcrimes <- crimes %>%
   filter(`Primary Type` %in% c("INTERFERENCE WITH PUBLIC OFFICER"))
@@ -752,7 +755,7 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.86 for that cluster. Arrest rates below or equal to 0.86 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
+Arrest rates colored in purple are above 0.86 for that cluster. Arrest rates below or equal to 0.86 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference, potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
 
 
 #### Multi-Factor Cluster Analysis - General Crime Pattern Discernment
@@ -803,6 +806,7 @@ We would like to see if we can find clusters that are more pure in terms of type
 ## Tasks 2 and 3: Predictive Modeling for Crime Type and Arrests
 
 #### Task 2: Predicting Crime Types Using XGBoosted Trees
+We are only using a training data of 100000 observations, randomly sampled from our data for simplicity's sake and runtime.
 
 ```{r}
 subsetted_crimes <- crimes %>%
@@ -864,7 +868,7 @@ rf_class_metrics %>%
 
 #### Task 3: Predicting Arrest Rates Using XGBoosted Trees
 
-We are only using a training data of 100000 for simplicity's sake and runtime. For a full model, we can scale it to the full dataset using a cloud service.
+We are only using a training data of 100000 observations, randomly sampled from our data for simplicity's sake and runtime.
 
 ```{r}
 subsetted_crimes <- crimes %>%
@@ -926,13 +930,17 @@ Through our cluster analysis we found that different areas have different freque
 
 -   The proportion of crimes with the type interference with a public officer increases over time in all clusters
 
--   Cluster 4 looks to have a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
+-   The proportion of crimes with the type narcotics decreases over time in all clusters
+
+-   The proportion of crimes with the type criminal sexual assaults increases over time in all clusters
+
+-   The proportion of crimes with the type homicide increases over time in all clusters but increases the least in cluster 2
+
+-   Cluster 4 has a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
 
 -   In most years, Cluster 1 looks to have a higher frequency of crimes with the type, Burglary than other clusters
 
 -   The frequency of crimes with the type gambling has decreased over time overall but used to have the highest frequencies in cluster 2 and 3.
-
-This analysis is from just looking at this chart but (TO DO) we want to make this into graph form so it is more visually appealing and interpretable and we want to get some actual statistics (means, standard deviations) from this chart.
 
 We also find that arrest rates differ between different crimes and different areas. Arrest rates for homicides decrease over time for all clusters. With the northern most cluster having the highest arrest rate especially in recent years.
 
@@ -940,9 +948,11 @@ Criminal Sexual Assaults also have decreasing arrest rates over time for all clu
 
 Interference with a Public Officer has an opposite trend with arrest rates increasing over time. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people.
 
+In future analysis, it would be interesting to perform anova testing between clusters for frequencies of crimes and arrest rates to find the statistical significance of these findings. 
+
 #### Predicting Crime Type
 
-Our boosted model is able to correctly predict 0.3792947 of crime types We do not do a good job of predicting if a certain crime was committed (0.1501741 sensitivity). Our model does do a good of a job predicting if someone did not commit a certain crime (0.9741298 specificity). Out of all observations predicted to be a certain crime type, 36.33% of them were actually were that crime type (0.3632954 precision).
+Our boosted model is able to correctly predict 0.3792947 of crime types We do not do a very good job of predicting if a certain crime was committed (0.1501741 sensitivity). Our model does do a good of a job predicting if someone did not commit a certain crime (0.9741298 specificity). Out of all observations predicted to be a certain crime type, 36.33% of them were actually were that crime type (0.3632954 precision).
 
 #### Predicting Arrests
 
