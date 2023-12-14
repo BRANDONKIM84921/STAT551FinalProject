@@ -53,7 +53,7 @@ Chicago is considered a great place to visit by many, with many tourist attracti
 
 Our goal with the first task is to help tourists and any unfamiliar or safety conscious people of Chicago to be better informed about the trends of different crimes. Our clustering analysis aims to be able to find specific times and locations in which certain crimes are significantly more common than other crimes. Determining the centroids of these clustered points and finding their range in coordinates, times and dates will help these people to be more wary of certain crimes depending on location.
 
-Although beneficial, this type of analysis has a lot of biases and can be misleading to those that are less informed. For instance, it is important to realize that we are performing the clustering on the type of crimes, rather than the frequency. This means that we will be able to determine the most popular crimes given a place and time, rather than the odds of a certain crime happening. However, using the size of a cluster will help people determine how often crimes happen in a given area.
+Although beneficial, this type of analysis has a lot of biases and can be misleading to those that are less informed. For instance, it is important to realize that we are performing the clustering on the type of crimes, rather than the frequency. This means that we will be able to determine the most popular crimes given a place and time, rather than the odds of a certain crime happening. However, using the size of a cluster will help give people an idea of how often crimes happen in a given area.
 
 Our goal with the second task is to allow locals, citizens, and police to choose their own location and time, and we will predict which type of crime may occur there. This will allow locals to potentially choose places to live or routes to work, and allow tourists to make informed choices on where they should or should not visit. Additionally, it could allow police to send additional resources for that specific crime to the given location.
 
@@ -61,9 +61,11 @@ Our third task is to make a model to predict if an arrest was made based on info
 
 Overall, the findings of this project are intended to benefit multiple groups of people. Tourists planning to visit Chicago could benefit from a better understanding of safe and potentially risky areas. Residents will have more information which will allow them to make better decisions on their living situation and daily activities. Finally, the Chicago police will have more insight into crime hotspots, enabling them to better distribute their resources as necessary.
 
-The datasets used in this analysis are from the Chicago Data Portal, specifically the Crimes dataset (Chicago Data Portal) and the Homicide Map dataset (Chicago Data Portal) . These are compiled by the Chicago Police Department using their system called CLEAR - Citizen Law Enforcement Analysis and Reporting System, which is available to the public.
+## Data Source and Context
 
-While this data includes all reported crimes published by the Chicago Police Department, there may be inherent bias involved. It is possible that racial profiling used by police departments may over-inflate the crimes reported for people of color. Additionally, those who live in lower income or gang related areas may also be more likely to be arrested for potentially committing a crime as compared to people from more affluent neighborhoods. It is also incredibly important to note that this data reflects the reported crimes in Chicago, not the true number of crimes. Any crimes that tend to be reported less often are unlikely to be adequately represented with this analysis. For example, domestic assault or sexual assault cases may be represented incorrectly, as these types of crimes tend to be reported less often. Thus, it is important that we include these biases in our conclusions and limit our generalizations, to ensure that the mentioned groups, as well as others, are not negatively affected by our conclusions. We also investigate how crimes change over time but we realize that this may be because there is greater or less focus on policing these crimes over time and not necessarily that people are committing these crimes at different rates. We recognize that this data regards sensitive information, and we will do everything possible to ensure that our results are not used in a way which may harm certain groups of people.
+The datasets used in this analysis are from the Chicago Data Portal, specifically the Crimes dataset (Chicago Data Portal) and the Homicide Map dataset (Chicago Data Portal). These are compiled by the Chicago Police Department using their system called CLEAR - Citizen Law Enforcement Analysis and Reporting System, which is available to the public.
+
+While this data includes all reported crimes published by the Chicago Police Department, there may be inherent bias involved. It is possible that racial profiling used by police departments may over-inflate the crimes reported for people of color. Additionally, those who live in lower income or gang related areas may also be more likely to be arrested for potentially committing a crime as compared to people from more affluent neighborhoods. It is also incredibly important to note that this data reflects the reported crimes in Chicago, not the true number of crimes. Any crimes that tend to be reported less often are unlikely to be adequately represented with this analysis. For example, domestic assault or sexual assault cases may be represented incorrectly, as these types of crimes tend to be reported less often. Thus, it is important that we include these biases in our conclusions and limit our generalizations, to ensure that the mentioned groups, as well as others, are not negatively affected by our conclusions. We will also investigate how crimes change over time but we realize that this may be because there is greater or less focus on policing these crimes over time and not necessarily that people are committing these crimes at different rates. We recognize that this data regards sensitive information, and we will do everything possible to ensure that our results are not used in a way which may harm certain groups of people.
 
 In conclusion, this project seeks to find patterns of crime throughout Chicago and contribute to the greater good by giving the people of Chicago access to easily understandable information about the safety of their surroundings.
 
@@ -77,7 +79,7 @@ This study was carried out in 1993 but "An analysis of police responses to gangs
 
 Ba finds in "The Role of Officer Race and Gender in Police-Civilian Interactions in Chicago" that "Chicago is also heavily segregated, \[and\] has a history of racial tensions between residents and police" (Ba et al. 2021). This is potentially impactful to arrest rates as Smith writes in "Racial Profiling? A Multivariate Analysis of Police Traffic Stop Data" that in the US, "Historically, minorities, and particularly African Americans, have had physical force used against them or have been arrested or stopped by police at rates exceeding their percentage in the population." (Smith and Petrocelli 2001) We would like to study the distribution of arrest rates in different locations of Chicago and regarding different types of Crime. When analyzing these rates and locations, we would like to reference maps including demographic information about the people living in these areas.
 
-Different types of crimes may also occur at different times of the day. The US Department of Justice ("Violent Crime Time of Day(per 1,000 in Age Group)" 2022) finds that, "In general, the number of violent crimes committed by adults increases hourly from 6 a.m. through the afternoon and evening hours, peaks at 9 p.m., and then drops to a low point at 5 a.m. In contrast, violent crimes committed by youth peak in the afternoon between 3 p.m. and 4 p.m., the hour at the end of the school day. More than one-third (37%) of all violent crime committed by youth occurs in the 5 hour period between noon and 5 p.m. In comparison, 30% of all violent crime committed by adults occurs between 6 p.m. and 11 p.m." We want to perform analysis on the time of day that certain types of crimes occur in Chicago and compare them to this data that is an aggregate of 45 states and DC.
+Different types of crimes may also occur at different times of the day. The US Department of Justice ("Violent Crime Time of Day(per 1,000 in Age Group)" 2022) finds that, "In general, the number of violent crimes ted by adults increases hourly from 6 a.m. through the afternoon and evening hours, peaks at 9 p.m., and then drops to a low point at 5 a.m. In contrast, violent crimes ted by youth peak in the afternoon between 3 p.m. and 4 p.m., the hour at the end of the school day. More than one-third (37%) of all violent crime ted by youth occurs in the 5 hour period between noon and 5 p.m. In comparison, 30% of all violent crime ted by adults occurs between 6 p.m. and 11 p.m." We want to perform analysis on the time of day that certain types of crimes occur in Chicago and compare them to this data that is an aggregate of 45 states and DC.
 
 (Jenness and Grattet 1996) studied crime in Denver, Colorado and Los Angeles, California. They created a model to predict types of crimes occurring at a certain location, time, and day of the week. They used a Decision Tree classifier and a Naïve Bayesian classifier and achieved 51% prediction accuracy in Denver and 54% prediction accuracy in Los Angeles for predicting the type of crime.
 
@@ -133,7 +135,7 @@ crimes <- crimes %>%
       `Location Description` = toupper(`Location Description`))
 ```
 
-We wanted the data sets to have equal representation in the features, so we got rid of district and community area. We also decided to drop all na values as there were less than 1% of observations that had an NA value in a feature we cared about.
+We wanted the data sets to have equal representation in the features, so we got rid of district and community area. We also decided to drop all NA values as there were less than 1% of observations that had an NA value in a feature we cared about.
 
 Additionally, in the big data set, the crime type has multiple representations of a type of crime used, so we used a case_when to merge the like ones together.
 
@@ -150,9 +152,9 @@ We would also like to clean the homicides data set for some surface level analys
 
 ## Exploratory Analysis
 
-We need to perform some surface level analysis before fitting clustering, to gauge the effectiveness of geospatial cluster analysis.
+We need to perform some surface level analysis before fitting cluster models, to gauge the effectiveness of geospatial cluster analysis.
 
-We can create a map view of our collected records of incidents and informally examine (eyeball) if any clusters are visibly recognizable just from their coordinates. In order to mitigate visual clutter in the map visualization, we can create multiple map visualizations off of all permutations of some of our interested features (i.e. day, month, year, type of crime). This lets us examine the variability that each cluster has in size, range and location, in which the cluster analysis should hopefully be able to segment with a predetermined number of clusters. Specifically, we visualized this using an r shiny app where one can select specific features and view the clusters of incidents.
+We can create a map view of our collected records of incidents and informally examine (eyeball) if any hotspots are visibly recognizable just from their coordinates, as we would hope these hotspots would become clusters in our analysis. In order to mitigate visual clutter in the map visualization, we can create multiple map visualizations off of all permutations of some of our interested features (i.e. day, month, year, type of crime). This lets us examine the variability that each hotspot has in size, range and location, which would better allow us to determine how many clusters we should use in our cluster analysis. Specifically, we visualized this using an R Shiny app where one can select specific features and view the hotspots of incidents.
 
 For simplicity's sake (and since shinyapps.io doesn't allow data that exceeds 100 mb), we will be using data that only relates to homicides, sexual assault and officer interference, as those are the crimes we particularly care about. In addition, we will also be including assault, robbery, motor vehicle theft and prostitution, as those are some general crimes that people are especially weary of in Chicago.
 
@@ -218,14 +220,14 @@ crimes %>%
 
 #### Geospatial Cluster Analysis - General Crime Pattern Discernment
 
-We want to see which types of crime are more popular in different areas of Chicago. To do that, we performed K means clustering on crime observations based on their X and Y coordinates. We chose to look at Arson, Liquor Law Violation, Gambling, Kidnapping, Concealed Carry License Violations, Criminal Trespassing, Narcotics, Burglary, and Interference with a Public Officer. We chose a subset of crimes because there were many listed and our analysis may be clouded by the vast array of crime types.
+We want to see which types of crime are more popular in different areas of Chicago. To do that, we performed K-means clustering on crime observations based on their X and Y coordinates. We chose to look at Arson, Liquor Law Violation, Gambling, Kidnapping, Concealed Carry License Violations, Criminal Trespassing, Narcotics, Burglary, and Interference with a Public Officer. We chose a subset of crimes because there were many listed and our analysis may be clouded by the vast array of crime types. These crimes were selected as they had some of the highest proportions in the dataset, and because these are crimes that may be important in helping determine why someone would choose to live or not live in certain areas.
 
 ```{r}
 subsetcrimes <- crimes %>%
   filter(`Primary Type` %in% c("ARSON", "LIQUOR LAW VIOLATION", "GAMBLING", "KIDNAPPING", "CONCEALED CARRY LICENSE VIOLATION", "CRIMINAL TRESPASS", "NARCOTICS", "BURGLARY", "INTERFERENCE WITH PUBLIC OFFICER", "CRIMINAL SEXUAL ASSAULT", "HOMICIDE"))
 ```
 
-For visualization purposes, since the subset is 1328825 observations (which is a lot for visualization), we will be using an animation to section it off by year. When we performed kmeans clustering, we used the initial 2002 centroids from this larger dataset with many crimes as the initial centroids for other years and plots. This allows the clusters to be more comparable over years and plots throughout this project. This plot with many crimes is still very hard to pull analysis from because there are so many observations so we also created an interactive table and graphic of these clusters and the proportions of types of crimes within each cluster each year. We will still show the plot below so the reader can visualize these clusters. We preferred frequency analysis of type of crime types in clusters over counts of crime types because these clusters are arbitrary and not based on population sizes or area.
+For visualization purposes, since the subset is 1,328,825 observations, which would clutter the visualization too much for any useful pattern to be discerned, we will be using an animation to section it off by year. When we performed K-means clustering, we used the initial 2002 centroids from this larger dataset with many crimes as the initial centroids for other years and plots. This allows the clusters to be more comparable over years and plots throughout this project. This plot with many crimes is still very hard to pull analysis from because there are so many observations so we also created an interactive table and graphic of these clusters and the proportions of types of crimes within each cluster each year. We will still show the plot below so the reader can visualize these clusters. We preferred frequency analysis of type of crime types in clusters over counts of crime types because these clusters are arbitrary and not based on population sizes or area.
 
 ```{r}
 #| label: Cluster analysis Many Crimes
@@ -303,9 +305,9 @@ animate(animatedplot,  height = 500, width = 800,
 anim_save("clusteranalysis_ManyCrimes.gif")
 ```
 
-Interestingly, it looks like the number of crimes overall is decreasing over time or these crimes are being less reported. 
+Interestingly, it looks like the number of crimes overall is decreasing over time or these crimes are being reported less. 
 
-The following table shows the frequency of each crime in each cluster for each year. Each row adds up to 1. This will allow us to see which types of crimes are more popular in which areas and how these trends change over time.
+The following table shows the proportion of each crime in each cluster for each year. Each row adds up to 1. This will allow us to see which types of crimes are more popular in which areas and how these trends change over time.
 
 ```{r}
 ## chat gpt and tb on Stack Overflow https://stackoverflow.com/questions/22767893/count-number-of-rows-by-group-using-dplyr
@@ -334,26 +336,32 @@ The following plot visualizes these proportions of crime types in each cluster
 include_app("https://3efmzi-bena-smith.shinyapps.io/ShinyAppCrimeProportions/", height = "725px")
 ```
 
-Some observations from our table and visual:
+Here are some of the main observations from our table and visual:
 
--   The proportion of crimes with the type interference with a public officer increases over time in all clusters
+-   The proportion of Interference with a Public Officer crimes increases over time in all clusters
 
--   The proportion of crimes with the type narcotics decreases over time in all clusters
+-   The proportion of Narcotics crimes decreases over time in all clusters
 
--   The proportion of crimes with the type criminal sexual assaults increases over time in all clusters
+-   The proportion of Criminal Sexual Assault crimes increases over time in all clusters
 
--   The proportion of crimes with the type homicide increases over time in all clusters but increases the least in cluster 2
+-   The proportion of Homicide crimes increases over time in all clusters but increases the least in Cluster 2
 
--   Cluster 4 has a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
+-   Cluster 4 has a higher proportion of Interference with a Public Officer crimes than other clusters in recent years
 
--   In most years, Cluster 1 looks to have a higher frequency of crimes with the type, Burglary than other clusters
+-   In most years, Cluster 1 looks to have a higher frequency of Burglary crimes than other clusters
 
--   The frequency of crimes with the type gambling has decreased over time overall but used to have the highest frequencies in cluster 2 and 3.
+-   The frequency of Gambling crimes has decreased over time overall but used to have the highest frequencies in Clusters 2 and 3.
+
+Based on this analysis, we cannot tell citizens which cluster or location is the safest, however they could use this information for themselves to determine where they would feel the most comfortable living. The overall decrease in Narcotics crimes over time tells us that drug abuse prevention techniques may be working in Chicago, but the rise in homicies and sexual assault tells us that not enough is being done to prevent these crimes. The Chicago police department shuld divert additional funding to investigating and preventing these types of crimes. Again, it is important to note that the rise in proportion of sexual assault crimes may be truly occurring, or there could be a rise in people willing to report sexual assault.
+
+We would also like to focus on three specific types of crime using this geospatial cluster analysis, specifically Homicides, Criminal Sexual Assaults, and Interference with a Public Officer. We believe that these crimes are important to highlight as they can be threats to personal safety. The first two, homicides and sexual assault, are incredibly dangerous crimes that would have a large influence on whether or not someone would feel comfortable living in a certain area. 
+
+Interference with a Public Officer was also selected due to recent events regarding policing. As we all know, the use of racial profiling and the unequal treatment of black people by police has been a huge problem in recent years and is drawing more and more attention. Additonally, the immunity of police officers for ting crimes is continuously questioned by the media and the public. We selected this crime, Interference of a Public Officer, to see whether there is an inclination for police officers to protect their own safety and ability to carry out their jobs more than they protect the lives of citizens and victims of crimes. Although this crime type does not exactly measure this idea, we thought it may still have valuable insights into how the interfence of police officers is treated differently or similarly to more dangerous crimes, such as homicides and sexual assault.
 
 
 #### Geospatial Cluster Analysis - Homicides Pattern Discernment
 
-We wanted to look more in depth at homicide locations in Chicago, especially because the frequency of homicides increases over time in each cluster. We made made an animated plot of the locations of homicides in Chicago based on x/y coordinates. We clustered this data using K Means with 5 clusters. We also looked at the arrest rates in each cluster. Although a homicide does not necessarily mean that someone is liable for a crime and can be arrested, we used arrests as a metric representing the effectiveness of police in the area. The arrest rate does not need to be close to 1 for us to deem the police as effective because a homicide does not necessarily mean that someone is liable for a crime. However, if the arrest rate is lower in one cluster compared to other clusters, this may be evidence that police need to focus more on these areas.
+We also wanted to look more in depth at homicide locations in Chicago, especially because the frequency of homicides increases over time in each cluster. We made an animated plot of the locations of homicides in Chicago based on x and y coordinates. We clustered this data using K-means with 5 clusters. We also looked at the arrest rates in each cluster. Although a homicide does not necessarily mean that someone is liable for a crime and can be arrested, we used arrests as a metric representing the effectiveness of police in the area. The arrest rate does not need to be close to 1 for us to deem the police as effective because again a homicide does not necessarily mean that someone is liable for a crime. However, if the arrest rate is lower in one cluster compared to other clusters, this may be evidence that police need to focus more on these areas.
 
 ```{r results = FALSE}
 #| label: Cluster analysis Homicides
@@ -486,11 +494,13 @@ anim_save("homicide_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.4 for that cluster. Arrest rates below or equal to 0.4 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. This may be because crime is increasing or may be due to changes in police organization. We would like to look at numbers of homicides and see if they increase over time. It is also interesting that cluster 2 has a higher arrest rates than the other clusters most of the time and especially in later years. It will be interesting to do more research about this area. We can look at demographic information including earnings data in this area. We would like to investigate other crimes individually to see if the spacial distribution of crimes differs by crime type.
+Arrest rates colored in purple are above 0.4 for that cluster. Arrest rates below or equal to 0.4 are colored in pink for that cluster. As time goes on, we can see in the visualization that more clusters have lower arrest rates (shown in pink). This may be because crime is increasing, criminals are becoming better at hiding evidence, or may be due to changes in police organization and investigative techniques. It is also interesting that Cluster 2 has a higher arrest rates than the other clusters during most timeframes and especially in later years. We will also investigate other crimes individually to see if the spacial distribution of crimes differs by crime type.
+
+In the future, we would like to look at numbers of homicides and see if they increase over time. It would be interesting to do more research about the area of Cluster 2. We could look at demographic information including earnings data in this area to see if there are factors that are associated with their higher arrest rates.
 
 #### Geospatial Cluster Analysis - Criminal Sexual Assault Pattern Discernment
 
-We also want to investigate Criminal Sexual Assaults especially because rates of Criminal Sexual Assaults increase over time in each cluster. 
+We also want to investigate Criminal Sexual Assaults as they are a crime that most people would find highly disturbing to live near and especially because rates of Criminal Sexual Assaults are increasing over time in each cluster. 
 
 ```{r}
 sexassault_subsetcrimes <- crimes %>%
@@ -621,11 +631,14 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.12 for that cluster. Arrest rates below or equal to 0.12 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates. In earlier years, the northern most cluster has the highest arrest rates but over time, all clusters have a similar low arrest rate from 0.1-0.05 in 2022 and 2023.
+Arrest rates colored in purple are above 0.12 for that cluster. Arrest rates below or equal to 0.12 are colored in pink for that cluster. One observation is that as time goes on, more clusters have lower arrest rates (shown in pink). In earlier years, the northern most cluster has the highest arrest rates but over time, all clusters have a similar low arrest rate from 0.1-0.05 in 2022 and 2023. 
+
+The decrease in arrests could be due to an increase in crimes without an aswering increase in policing, criminals becoming better at hiding evidence, or changes in police organization and investigative techniques. This tells us that the Chicago Police Department needs to allocate more resources to investigating Criminal Sexual Assaults, to get these criminals off of the street and prevent more criminals of this type from being able to  more sexual assaults.
 
 #### Geospatial Cluster Analysis - Public Officer Interference Pattern Discernment
 
-We also want to investigate Public Officer Interference especially because rates of Public Officer Interference increase over time in each cluster. 
+We also want to investigate Public Officer Interference because this can show the respect and effectiveness of police as seen by the citizens and especially because rates of Public Officer Interference increase over time in each cluster. 
+
 ```{r}
 interferencewPO_subsetcrimes <- crimes %>%
   filter(`Primary Type` %in% c("INTERFERENCE WITH PUBLIC OFFICER"))
@@ -722,7 +735,7 @@ merged_df <- merged_df %>%
 ```{r}
 percentile_25 <- quantile(arrest_rates$arrest_rate, 0.25)
 ```
-The 25th percentile of arrest rates for Public Officer Interference in clusters over years is 0.8682178 We colored the arrest rates on the plot based on if they are over or under this rate. 
+The 25th percentile of arrest rates for Public Officer Interference in clusters over years is 0.8682178. We colored the arrest rates on the plot based on if they are over or under this rate. 
 
 
 ```{r}
@@ -755,16 +768,20 @@ anim_save("sexassault_cluster_analysis.gif")
 #finnstats on R bloggers https://www.r-bloggers.com/2021/05/animated-graph-gif-with-gganimate-ggplot/ 
 ```
 
-Arrest rates colored in purple are above 0.86 for that cluster. Arrest rates below or equal to 0.86 are colored in pink for that cluster. One observation is that as time goes on, more clusters have higher arrest rates. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference, potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
+Arrest rates colored in purple are above 0.86 for that cluster. Arrest rates below or equal to 0.86 are colored in pink for that cluster. As time goes on, we can see in our visualization that more clusters have higher arrest rates (shown in purple). It also looks like the northern most cluster has the lowest arrest rates for the most part. 
+
+This increase may be due to fewer crimes occurring, criminals becoming more obvious or intense, or a change in police organization and investigative techniques. We believe that the northern most cluster having the lowest arrest rates may have to do with demographics in this area. Police may not arrest certain groups of people for police interference, potentially more affluent groups of people. In future analysis it would be interesting to look at earning and demographic distributions in Chicago to investigate this.
+
+It is also important to compare this cluster analysis to the analyses on Homicides and Criminal Sexual Assault. As discusses previously, the arrest rates for both Homicide and Criminal Sexual Assault are decreasing, while the arrest rates for Interference with a Public Officer are increasing. This suggests that the Chicago police are more concerned with ensuring their own safety and ability to move freely without being worried about their safety than they are with ensuring the safety of people who are or could be the victims of Homicide and Sexual Assault. We would like the police department to reevaulate their allocation of resources to investigating and arresting people for these crimes, as the least harmful of these crimes seems to be treated the most seriously by the police, based on this analysis.
 
 
 #### Multi-Factor Cluster Analysis - General Crime Pattern Discernment
 
-We would like to see if we can find clusters that are more pure in terms of type of crime.
+We would like to see if we can find clusters that are more pure in terms of type of crime. This means that we would like to find clusters that are able to distinugish between types of crimes very distinctly, such that ideally each type of crime would have its own cluster.
 
-To unpack and analyze the variations in crimes frequencies when it comes to factors beyond coordinates, a different clustering algorithm other than k-means must be used to accommodate for categorical data. The clustering algorithm we have decided upon is k-Prototypes Clustering, a cluster analysis method that combines the methods of both k-means for numerical data and k-modes for categorical data. The utilization of this type of analytical approach will be used to determine if certain crimes can be be grouped into specific groups, drawing inferences on the general timing and setting of specific crimes.
+To unpack and analyze the variations in crimes frequencies when it comes to factors beyond coordinates, a different clustering algorithm other than K-means must be used to accommodate for categorical (data that has categories incteas of being numeric) data. The clustering algorithm we have decided upon is K-prototypes Clustering, a cluster analysis method that combines the methods of both K-means for numerical data and K-modes for categorical data. The utilization of this type of analytical approach will be used to determine if certain crimes can be be grouped into specific groups, drawing inferences on the general timing and setting of specific crimes.
 
-The issue with our current subset of data is that the frequencies of the crimes can hinder the inferential power of the algorithm. Since k-prototypes clusters observations around centroids, if a certain crime appears significantly more often with relatively moderate variability, a lot of the clusters can have a high influx of observations of that crime. To combat this, we will be using a sample of that subset in which each crime is represented equally within the data.
+The issue with our current subset of data is that the frequencies of the crimes can hinder the inferential power of the algorithm. Since K-prototypes clusters observations around centroids, if a certain crime appears significantly more often with relatively moderate variability, a lot of the clusters can have a high influx of observations of that crime. To combat this, we will be using a sample of that subset in which each crime is represented equally within the data.
 
 Crime frequencies:
 
@@ -801,12 +818,15 @@ proto_data %>%
   kable_styling("striped")
 ```
 
-We would like to see if we can find clusters that are more pure in terms of type of crime. Our current run shows a big plurality within each cluster. The above table shows the centroids of these clusters and the frequencies of crime in each cluster.
+We would like to see if we can find clusters that are more pure in terms of type of crime. Our current run shows a big plurality within each cluster. The above table shows the centroids of these clusters and the frequencies of crime in each cluster. Thus, we were unable to find a clear separation between types of crime based on variables about location and time.
 
 ## Tasks 2 and 3: Predictive Modeling for Crime Type and Arrests
 
+The following tasks will use gradient boosted (XGBoosted) trees. These trees use multiple weak learners, usually simple decision trees, and combine their predictions to make more robust and accurate models. This occurs with sequential decision tree creation, where each decision tree learns from the mistakes of the previous and tries to optimize a metric or function to determine whether or not the trees are improving the model. Using this method we can improve the accuracy of our predictions from just one decision tree by learning from its mistakes and trying new trees. Gradient boosted trees tend to be more accurate than single decision trees and random forests, which is when many decision trees are created and a majority vote of these trees determines the overall classifications.
+
 #### Task 2: Predicting Crime Types Using XGBoosted Trees
-We are only using a training data of 100000 observations, randomly sampled from our data for simplicity's sake and runtime.
+
+We are only using a training data of 100,000 observations, randomly sampled from our data for simplicity's sake and runtime.
 
 ```{r}
 subsetted_crimes <- crimes %>%
@@ -866,9 +886,11 @@ rf_class_metrics %>%
   kable_styling("striped")
 ```
 
+As shown in this gradient boosted model, we have fairly low accuracy in predicting the type of crime that occurred based on locaion and time. This tells us that more information would be needed for police officers to accurately predict which crime is occurring in a certain location, such as information provided in a 911 call. This also tells us that the types of crimes occurring in Chicago are not highly separated across neighborhoods, and thus citizens and tourists may need to look at overall crime rates and crime type distributions for each neighborhood to determine where they would feel the most comfortable.
+
 #### Task 3: Predicting Arrest Rates Using XGBoosted Trees
 
-We are only using a training data of 100000 observations, randomly sampled from our data for simplicity's sake and runtime.
+We are only using a training data of 100,000 observations, randomly sampled from our data for simplicity's sake and runtime.
 
 ```{r}
 subsetted_crimes <- crimes %>%
@@ -928,35 +950,39 @@ As shown in our gradient boosted model, we have fairly high accuracy in predicti
 
 Through our cluster analysis we found that different areas have different frequencies of crime types. From our initial cluster analysis over many crime types, we can view our table of frequencies of crimes in each of our clusters over time and see that:
 
--   The proportion of crimes with the type interference with a public officer increases over time in all clusters
+-   The proportion of Interference with a Public Officer crimes increases over time in all clusters
 
--   The proportion of crimes with the type narcotics decreases over time in all clusters
+-   The proportion of Narcotics crimes decreases over time in all clusters
 
--   The proportion of crimes with the type criminal sexual assaults increases over time in all clusters
+-   The proportion of Criminal Sexual Assault crimes increases over time in all clusters
 
--   The proportion of crimes with the type homicide increases over time in all clusters but increases the least in cluster 2
+-   The proportion of Homicide crimes increases over time in all clusters but increases the least in Cluster 2
 
--   Cluster 4 has a higher frequency of crimes with the type interference with a public officer than other clusters in recent years than other clusters
+-   Cluster 4 has a higher frequency of Interference with a Public Officer crimes than other clusters in recent years than other clusters
 
--   In most years, Cluster 1 looks to have a higher frequency of crimes with the type, Burglary than other clusters
+-   In most years, Cluster 1 looks to have a higher frequency of Burglary crimes than other clusters
 
--   The frequency of crimes with the type gambling has decreased over time overall but used to have the highest frequencies in cluster 2 and 3.
+-   The frequency of Gambling crimes has decreased over time overall but used to have the highest frequencies in Clusters 2 and 3.
 
 We also find that arrest rates differ between different crimes and different areas. Arrest rates for homicides decrease over time for all clusters. With the northern most cluster having the highest arrest rate especially in recent years.
 
 Criminal Sexual Assaults also have decreasing arrest rates over time for all clusters. In earlier years, the northern most cluster has the highest arrest rates but over time, all clusters have a similar low arrest rate from 0.1-0.05 in 2022 and 2023.
 
-Interference with a Public Officer has an opposite trend with arrest rates increasing over time. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. police may not arrest certain groups of people for police interference potentially more affluent groups of people.
+Interference with a Public Officer has an opposite trend with arrest rates increasing over time. It also looks like the northern most cluster has the lowest arrest rates for the most part. Our hypothesis is that this may have to do with demographics in this area. It is possible that police may not arrest certain groups of people for police interference, such as more affluent groups of people.
 
-In future analysis, it would be interesting to perform anova testing between clusters for frequencies of crimes and arrest rates to find the statistical significance of these findings. 
+In future analysis, it would be interesting to perform ANOVA testing between clusters for frequencies of crimes and arrest rates to find the statistical significance of these findings. This could show us whether there is a significant difference between these clusters and help us determine what factors are influencing this difference.
 
 #### Predicting Crime Type
 
-Our boosted model is able to correctly predict 0.3792947 of crime types We do not do a very good job of predicting if a certain crime was committed (0.1501741 sensitivity). Our model does do a good of a job predicting if someone did not commit a certain crime (0.9741298 specificity). Out of all observations predicted to be a certain crime type, 36.33% of them were actually were that crime type (0.3632954 precision).
+Our boosted model is able to correctly predict 0.3792947 of crime types. We do not do a very good job of predicting if a certain type of crime was committed (0.1501741 sensitivity). Our model does do a good of a job predicting if the crime committed was not a specific type (0.9741298 specificity). Out of all observations predicted to be a certain crime type, 36.33% of them were actually were that crime type (0.3632954 precision). This is a low number, indicating our model is not doing well at correctly predicting crime types based on only a few predictors. 
+
+Overall, this suggests that this model may not be very helpful to the public, as it does not perform well in predicting the type of crime being committed based on location and time. Instead, we would suggest that citizens use overall crime rates and distribution of crime types for each specific area in order to determine where they feel the most comfortable.
 
 #### Predicting Arrests
 
-Our boosted model is able to correctly predict 0.8743000 of arrests. We do a good job of predicting if someone was arrested correctly (0.9769044 sensitivity). Our model does not do as good of a job predicting if someone was not arrested (0.5816641 specificity). Out of all positive predictions, 0.8694555 of them were actually positive (0.8694555 precision). Police Units may use this model to look at specific scenarios and see how they can better improve their processes.
+Our boosted model is able to correctly predict 0.8743000 of arrests. We do a good job of predicting if someone was arrested correctly (0.9769044 sensitivity). Our model does not do as good of a job predicting if someone was not arrested (0.5816641 specificity). Out of all arrest predictions, 0.8694555 of them were actually arrests (0.8694555 precision). 
+
+The police department may use this model to look at specific scenarios involving crime type, location, and time to see how they can better improve their arrest rates. Citizens can use this model to examine the arrest rates for specific locations and crimes to see how well their local police departments are doing and to inform them of potential unresolved crimes in their area.
 
 ## Limitations and Ethics Considerations
 
